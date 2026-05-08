@@ -1,38 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codar VII</title>
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Rockstar</title>
+
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<h3>Hotel Rockstar</h3>
+    <h1>🏨 Hotel Rockstar</h1>
 
-<section>
-  <select name="escolha" id="escolha">
-    <option value="1">Reserva de Quartos</option>
-    <option value="2">Cadastro de Hóspedes</option>
-    <option value="3">Eventos</option>
-    <option value="4">Ar condicionado</option>
-    <option value="5">Abastecimento de Carros</option>
-    <option value="6">Relatórios Operacionais</option>
-    <option value="7">Sair</option>
-  </select>
+    <section>
 
-  <div id="campos"></div>
+        <select id="escolha">
 
-  <input type="submit" value="Entrar" onclick="inicio()">
-</section>
+            <option value="">Escolha uma opção</option>
+            <option value="reserva">Reserva de Quartos</option>
+            <option value="hospedes">Cadastro de Hóspedes</option>
+            <option value="eventos">Eventos</option>
+            <option value="ar">Ar Condicionado</option>
+            <option value="abastecimento">Abastecimento</option>
 
-  <input type="submit" value="Entrar" onclick="inicio()">
-</section>
+        </select>
 
-<a class="btn" href="../../index.html">Voltar</a>
+        <button onclick="mostrarFormulario()">
+            Entrar
+        </button>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="hora-de-codar7.js"></script>
+        <!-- RESERVA -->
+        <div id="reserva" class="formulario">
+
+            <h2>Reserva de Quartos</h2>
+
+            <input type="text" id="nomeReserva" placeholder="Nome do hóspede">
+
+            <input type="number" id="diasReserva" placeholder="Quantidade de dias">
+
+            <input type="number" id="valorReserva" placeholder="Valor da diária">
+
+            <button onclick="calcularReserva()">
+                Calcular Reserva
+            </button>
+
+            <div id="resultadoReserva" class="resultado"></div>
+
+        </div>
+
+        <!-- HOSPEDES -->
+        <div id="hospedes" class="formulario">
+
+            <h2>Cadastro de Hóspedes</h2>
+
+            <input type="text" id="nomeHospede" placeholder="Nome do hóspede">
+
+            <button onclick="cadastrarHospede()">
+                Cadastrar
+            </button>
+
+            <button onclick="listarHospedes()">
+                Listar Hóspedes
+            </button>
+
+            <ul id="listaHospedes"></ul>
+
+        </div>
+
+        <!-- EVENTOS -->
+        <div id="eventos" class="formulario">
+
+            <h2>Eventos</h2>
+
+            <input type="text" placeholder="Nome do evento">
+
+            <input type="number" placeholder="Quantidade de convidados">
+
+            <button>
+                Salvar Evento
+            </button>
+
+        </div>
+
+        <!-- AR -->
+        <div id="ar" class="formulario">
+
+            <h2>Ar Condicionado</h2>
+
+            <input type="text" placeholder="Local do ar condicionado">
+
+            <input type="number" placeholder="Temperatura desejada">
+
+            <button>
+                Configurar
+            </button>
+
+        </div>
+
+        <!-- ABASTECIMENTO -->
+        <div id="abastecimento" class="formulario">
+
+            <h2>Abastecimento</h2>
+
+            <input type="text" placeholder="Modelo do carro">
+
+            <input type="number" placeholder="Litros">
+
+            <button>
+                Abastecer
+            </button>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        let lista_hospedes = [];
+
+        function mostrarFormulario(){
+
+            let escolha = document.getElementById("escolha").value;
+
+            let formularios = document.querySelectorAll(".formulario");
+
+            formularios.forEach(formulario => {
+                formulario.classList.remove("ativo");
+            });
+
+            if(escolha){
+                document.getElementById(escolha).classList.add("ativo");
+            }
+        }
+
+        function calcularReserva(){
+
+            let nome = document.getElementById("nomeReserva").value;
+            let dias = Number(document.getElementById("diasReserva").value);
+            let valor = Number(document.getElementById("valorReserva").value);
+
+            let total = dias * valor;
+
+            document.getElementById("resultadoReserva").innerHTML = `
+                <strong>Reserva Confirmada!</strong><br><br>
+                Hóspede: ${nome}<br>
+                Dias: ${dias}<br>
+                Total: R$ ${total}
+            `;
+        }
+
+        function cadastrarHospede(){
+
+            let nome = document.getElementById("nomeHospede").value;
+
+            if(nome.trim() === ""){
+                return;
+            }
+
+            lista_hospedes.push(nome);
+
+            document.getElementById("nomeHospede").value = "";
+
+            listarHospedes();
+        }
+
+        function listarHospedes(){
+
+            let lista = document.getElementById("listaHospedes");
+
+            lista.innerHTML = "";
+
+            lista_hospedes.forEach(hospede => {
+
+                lista.innerHTML += `
+                    <li>${hospede}</li>
+                `;
+            });
+        }
+
+    </script>
 
 </body>
 </html>

@@ -20,7 +20,8 @@ section {
 }
 
 /* Inputs */
-input, select {
+input,
+select {
     margin: 8px;
     border-radius: 8px;
     border: 1px solid #30363D;
@@ -31,13 +32,16 @@ input, select {
     transition: 0.2s;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     border-color: #7C3AED;
     box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
 }
 
 /* Botões */
-button, .btn, input[type="submit"] {
+button,
+.btn,
+input[type="submit"] {
     padding: 10px 18px;
     margin: 8px;
     border: none;
@@ -49,7 +53,9 @@ button, .btn, input[type="submit"] {
     transition: 0.3s;
 }
 
-button:hover, .btn:hover, input[type="submit"]:hover {
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(124, 58, 237, 0.5);
 }
@@ -67,29 +73,113 @@ a {
     color: #22C55E;
 }
 
-/* SweetAlert Dark Mode */
-.swal2-popup {
-    background: #161B22 !important;
-    color: #E6EDF3 !important;
-    border-radius: 12px !important;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.swal2-title {
-    color: #E6EDF3 !important;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0D1117, #111827);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
 }
 
-.swal2-confirm {
-    background: linear-gradient(135deg, #7C3AED, #4F46E5) !important;
-    border: none !important;
+h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #A855F7, #6366F1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.swal2-cancel {
-    background: #30363D !important;
-    color: #E6EDF3 !important;
+section {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(22, 27, 34, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.swal2-input, .swal2-select {
-    background: #0D1117 !important;
-    color: #E6EDF3 !important;
-    border: 1px solid #30363D !important;
+select,
+input,
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid #30363D;
+    background: #0D1117;
+    color: white;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+}
+
+button {
+    background: linear-gradient(135deg, #7C3AED, #4F46E5);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+}
+
+.formulario {
+    display: none;
+    margin-top: 30px;
+    animation: aparecer 0.4s ease;
+}
+
+.ativo {
+    display: block;
+}
+
+.resultado {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
+ul {
+    margin-top: 15px;
+    list-style: none;
+}
+
+li {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
